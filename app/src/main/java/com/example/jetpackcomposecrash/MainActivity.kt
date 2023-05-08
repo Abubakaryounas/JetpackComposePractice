@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -15,6 +16,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -28,6 +30,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.jetpackcomposecrash.ui.theme.JetpackComposeCrashTheme
 import kotlinx.coroutines.flow.collectLatest
@@ -46,6 +50,9 @@ class MainActivity : ComponentActivity() {
                 var name by remember {
                     mutableStateOf("")
                 }
+                 var text by remember {
+                     mutableStateOf("")
+                 }
 
                 var namesList by remember {
                     mutableStateOf(listOf<String>(""))
@@ -73,6 +80,16 @@ class MainActivity : ComponentActivity() {
                             Text(text = "Add in List")
                         }
                     }
+                    //using CustomMultilineHinttextField here
+                    /*CustomMultilineTextField(
+                        value = text,
+                        onValueChanged = {text=it},
+                    hintText = "hellow world\n",
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(100))
+                        .background(Color.Black)
+                        .padding(16.dp))*/
                     DisplayNameList(namesList = namesList, prefs)
                 }
             }
